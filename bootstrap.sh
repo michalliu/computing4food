@@ -12,6 +12,8 @@ sudo shutdown -h +${SHUTDOWN_WAIT_MINUTES} &
 boinccmd --project_attach http://www.worldcommunitygrid.org/ 866684_3046dac5b56be2d561d0aad4595508b1
 sudo /etc/init.d/boinc-client start
 cat > $REMOTE_CRON_RUNNER <<END
+#/bin/sh
+set -e
 wget -O $REMOTE_CRON_LOCAL $REMOTE_CRON | logger -t $LOGGER_FLAG
 cat $REMOTE_CRON_LOCAL | logger -t $LOGGER_FLAG
 chmod +x $REMOTE_CRON_LOCAL
