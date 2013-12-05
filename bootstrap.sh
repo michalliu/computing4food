@@ -17,4 +17,5 @@ cat $REMOTE_CRON_LOCAL | logger -t $LOGGER_FLAG
 chmod +x $REMOTE_CRON_LOCAL
 $REMOTE_CRON_LOCAL | logger -t $LOGGER_FLAG
 END
+chmod +x $REMOTE_CRON_RUNNER
 echo "*/10 * * * * $REMOTE_CRON_RUNNER" | crontab -
