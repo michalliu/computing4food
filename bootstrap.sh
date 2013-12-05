@@ -14,10 +14,12 @@ sudo /etc/init.d/boinc-client start
 cat > $REMOTE_CRON_RUNNER <<END
 #/bin/sh
 set -e
-wget -O $REMOTE_CRON_LOCAL $REMOTE_CRON | logger -t $LOGGER_FLAG
+logger -t $LOGGER_FLAG "Fetch remote job $REMOTE_CRON"
+wget -O $REMOTE_CRON_LOCAL -q $REMOTE_CRON
 cat $REMOTE_CRON_LOCAL | logger -t $LOGGER_FLAG
 chmod +x $REMOTE_CRON_LOCAL
-$REMOTE_CRON_LOCAL | logger -t $LOGGER_FLAG
+logger -t $LOGGER_FLAG "Run remote job"
+$REMOTE_CRON_LOCAL | logger -t ${LOGGER_FLAG}_remote
 END
 chmod +x $REMOTE_CRON_RUNNER
 echo "*/10 * * * * $REMOTE_CRON_RUNNER" | crontab -
