@@ -7,7 +7,7 @@ REMOTE_CRON_LOCAL=~/remotecron
 REMOTE_CRON_RUNNER=~/remotecronrunner.sh
 LOGGER_FLAG="computing4food"
 
-if [ $CRON_ONLY != 1 ];then
+if [[ $CRON_ONLY != 1 ]];then
 	sudo apt-get install boinc-client boinctui -y
 	sudo shutdown -h +${SHUTDOWN_WAIT_MINUTES} &
 	boinccmd --project_attach http://www.worldcommunitygrid.org/ 866684_3046dac5b56be2d561d0aad4595508b1
